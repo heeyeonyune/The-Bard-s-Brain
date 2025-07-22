@@ -1,2 +1,4 @@
 # The-Bard-s-Brain
-This program uses AI to instantly generate rich and detailed fantasy worlds, backstories, characters, and visuals — streamlining creation and enhancing immersion for tabletop games like Dungeons &amp; Dragons.
+The Bard's Brain is an AI-powered tool that instantly generates rich fantasy worlds, character backstories, visuals, and more — streamlining worldbuilding and enhancing immersion for tabletop RPGs like Dungeons & Dragons.
+
+Built during the Google AI Hackathon with a collaborative team.
