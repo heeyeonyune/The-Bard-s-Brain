@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bard's Brain - Debug Version</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="w-full max-w-4xl mx-auto p-8 rounded-lg shadow-2xl">
+        <h1 class="text-4xl text-center mb-8">The Bard's Brain - Debug</h1>
+        
+        <div class="space-y-4">
+            <button onclick="testConnection()" class="btn bg-blue-500 text-white px-4 py-2 rounded">
+                Test Backend Connection
+            </button>
+            
+            <button onclick="testWorldGeneration()" class="btn bg-green-500 text-white px-4 py-2 rounded">
+                Test World Generation
+            </button>
+            
+            <button onclick="testCharacterGeneration()" class="btn bg-purple-500 text-white px-4 py-2 rounded">
+                Test Character Generation
+            </button>
+        </div>
+        
+        <div id="output" class="mt-8 p-4 bg-gray-100 rounded">
+            <p>Click buttons above to test API calls...</p>
+        </div>
+        
+        <div id="console" class="mt-4 p-4 bg-black text-green-400 rounded font-mono text-sm">
+            <p>Console output will appear here...</p>
+        </div>
+    </div>
+
+    <script>
+        const BACKEND_URL = 'http://localhost:8000';
+        
+        function log(message) {
+            const console = document.getElementById('console');
+            console.innerHTML += `<p>${new Date().toLocaleTimeString()}: ${message}</p>`;
+            console.scrollTop = console.scrollHeight;
+        }
+        
+        async function testConnection() {
+            log('Testing backend connection...');
+            try {
+                const response = await fetch(`${BACKEND_URL}/health`);
+                const data = await response.json();
+                log(`Connection successful: ${JSON.stringify(data)}`);
+                document.getElementById('output').innerHTML = `<p class="text-green-600">✓ Connection successful: ${JSON.stringify(data)}</p>`;
+            } catch (error) {
+                log(`Connection failed: ${error.message}`);
+                document.getElementById('output').innerHTML = `<p class="text-red-600">✗ Connection failed: ${error.message}</p>`;
+            }
+        }
+        
+        async function testWorldGeneration() {
+            log('Testing world generation...');
+            try {
+                const payload = {
+                    name: 'Test World',
+                    geography: 'Mountains and forests',
+                    magic_systems: 'Arcane magic',
+                    lore: 'Ancient history',
+                    other: 'A test world for debugging'
+                };
+                
+                log(`Sending payload: ${JSON.stringify(payload)}`);
+                
+                const response = await fetch(`${BACKEND_URL}/api/world/generate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                log(`Response status: ${response.status}`);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP ${response.status}: ${errorText}`);
+                }
+                
+                const data = await response.json();
+                log(`World generation successful: ${JSON.stringify(data)}`);
+                document.getElementById('output').innerHTML = `<p class="text-green-600">✓ World generation successful: ${JSON.stringify(data)}</p>`;
+            } catch (error) {
+                log(`World generation failed: ${error.message}`);
+                document.getElementById('output').innerHTML = `<p class="text-red-600">✗ World generation failed: ${error.message}</p>`;
+            }
+        }
+        
+        async function testCharacterGeneration() {
+            log('Testing character generation...');
+            try {
+                const payload = {
+                    name: 'Test Character',
+                    race: 'Human',
+                    characteristics: 'Brave and strong',
+                    visual_description: 'A tall warrior',
+                    backstory: 'A hero from a small village',
+                    world_context: 'A fantasy world with magic',
+                    world_id: null
+                };
+                
+                log(`Sending payload: ${JSON.stringify(payload)}`);
+                
+                const response = await fetch(`${BACKEND_URL}/api/character/generate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                log(`Response status: ${response.status}`);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP ${response.status}: ${errorText}`);
+                }
+                
+                const data = await response.json();
+                log(`Character generation successful: ${JSON.stringify(data)}`);
+                document.getElementById('output').innerHTML = `<p class="text-green-600">✓ Character generation successful: ${JSON.stringify(data)}</p>`;
+            } catch (error) {
+                log(`Character generation failed: ${error.message}`);
+                document.getElementById('output').innerHTML = `<p class="text-red-600">✗ Character generation failed: ${error.message}</p>`;
+            }
+        }
+        
+        // Test connection on page load
+        window.onload = function() {
+            log('Page loaded, testing connection...');
+            testConnection();
+        };
+    </script>
+</body>
+</html> 

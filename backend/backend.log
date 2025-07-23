@@ -1,0 +1,46 @@
+2025-06-27 16:08:56 - config - INFO - setup_logging:37 - Logging system initialized
+2025-06-27 16:08:56 - config - INFO - <module>:51 - Gemini client initialized successfully
+2025-06-27 16:08:56 - config - INFO - <module>:60 - API Configuration - Host: 0.0.0.0, Port: 8000, Debug: True
+2025-06-27 16:08:56 - asyncio - DEBUG - __init__:64 - Using selector: SelectSelector
+2025-06-27 16:08:57 - config - INFO - startup_event:28 - starting up
+2025-06-27 16:08:58 - config - INFO - shutdown_event:32 - shutting down
+2025-06-27 16:08:59 - config - INFO - setup_logging:37 - Logging system initialized
+2025-06-27 16:08:59 - config - INFO - <module>:51 - Gemini client initialized successfully
+2025-06-27 16:08:59 - config - INFO - <module>:60 - API Configuration - Host: 0.0.0.0, Port: 8000, Debug: True
+2025-06-27 16:08:59 - asyncio - DEBUG - __init__:64 - Using selector: SelectSelector
+2025-06-27 16:09:00 - config - INFO - startup_event:28 - starting up
+2025-06-27 16:09:08 - config - INFO - shutdown_event:32 - shutting down
+2025-06-27 16:09:09 - config - INFO - setup_logging:37 - Logging system initialized
+2025-06-27 16:09:11 - config - INFO - setup_logging:37 - Logging system initialized
+2025-06-27 16:09:11 - config - INFO - <module>:51 - Gemini client initialized successfully
+2025-06-27 16:09:11 - config - INFO - <module>:60 - API Configuration - Host: 0.0.0.0, Port: 8000, Debug: True
+2025-06-27 16:09:11 - asyncio - DEBUG - __init__:64 - Using selector: SelectSelector
+2025-06-27 16:09:17 - config - INFO - setup_logging:37 - Logging system initialized
+2025-06-27 16:09:17 - config - INFO - <module>:51 - Gemini client initialized successfully
+2025-06-27 16:09:17 - config - INFO - <module>:60 - API Configuration - Host: 0.0.0.0, Port: 8000, Debug: True
+2025-06-27 16:09:18 - asyncio - DEBUG - __init__:64 - Using selector: SelectSelector
+2025-06-27 16:09:27 - config - INFO - setup_logging:37 - Logging system initialized
+2025-06-27 16:09:27 - config - INFO - <module>:51 - Gemini client initialized successfully
+2025-06-27 16:09:27 - config - INFO - <module>:60 - API Configuration - Host: 0.0.0.0, Port: 8000, Debug: True
+2025-06-27 16:09:27 - asyncio - DEBUG - __init__:64 - Using selector: SelectSelector
+2025-06-27 16:09:38 - config - INFO - setup_logging:37 - Logging system initialized
+2025-06-27 16:09:38 - config - INFO - <module>:51 - Gemini client initialized successfully
+2025-06-27 16:09:38 - config - INFO - <module>:60 - API Configuration - Host: 0.0.0.0, Port: 8000, Debug: True
+2025-06-27 16:09:38 - asyncio - DEBUG - __init__:64 - Using selector: SelectSelector
+2025-06-27 16:09:40 - config - INFO - setup_logging:37 - Logging system initialized
+2025-06-27 16:09:40 - config - INFO - <module>:51 - Gemini client initialized successfully
+2025-06-27 16:09:40 - config - INFO - <module>:60 - API Configuration - Host: 0.0.0.0, Port: 8000, Debug: True
+2025-06-27 16:09:40 - asyncio - DEBUG - __init__:64 - Using selector: SelectSelector
+2025-06-27 16:09:42 - config - INFO - setup_logging:37 - Logging system initialized
+2025-06-27 16:09:44 - config - INFO - setup_logging:37 - Logging system initialized
+2025-06-27 16:09:44 - config - INFO - <module>:51 - Gemini client initialized successfully
+2025-06-27 16:09:44 - config - INFO - <module>:60 - API Configuration - Host: 0.0.0.0, Port: 8000, Debug: True
+2025-06-27 16:09:44 - asyncio - DEBUG - __init__:64 - Using selector: SelectSelector
+2025-06-27 16:10:03 - config - INFO - setup_logging:37 - Logging system initialized
+2025-06-27 16:10:03 - config - INFO - <module>:51 - Gemini client initialized successfully
+2025-06-27 16:10:03 - config - INFO - <module>:60 - API Configuration - Host: 0.0.0.0, Port: 8000, Debug: True
+2025-06-27 16:10:03 - asyncio - DEBUG - __init__:64 - Using selector: SelectSelector
+2025-06-27 16:10:14 - config - INFO - setup_logging:37 - Logging system initialized
+2025-06-27 16:10:14 - config - INFO - <module>:51 - Gemini client initialized successfully
+2025-06-27 16:10:14 - config - INFO - <module>:60 - API Configuration - Host: 0.0.0.0, Port: 8000, Debug: True
+2025-06-27 16:10:14 - asyncio - DEBUG - __init__:64 - Using selector: SelectSelector

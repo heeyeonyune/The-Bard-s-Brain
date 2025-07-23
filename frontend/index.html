@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bard's Brain - World & Character Generator</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    
+    <!-- Application Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <div class="main-container w-full max-w-4xl mx-auto p-8 rounded-lg shadow-2xl">
+
+        <!-- Connection Status Indicator -->
+        <div id="connection-status" class="mb-4 p-2 rounded text-center text-sm hidden">
+            <span id="status-text"></span>
+        </div>
+
+        <!-- Screen 1: Landing Page -->
+        <section id="screen1" class="screen text-center">
+            <h1 class="text-6xl text-title mb-12">THE BARD'S BRAIN</h1>
+            <button id="start-generation-btn" class="btn text-2xl px-12 py-4 rounded-lg">GENERATE WORLD</button>
+        </section>
+
+        <!-- Screen 2: World Input -->
+        <section id="screen2" class="screen hidden text-center">
+            <h1 class="text-5xl text-title">THE BARD'S BRAIN</h1>
+            <h2 class="text-3xl text-title mb-6">WORLD GENERATOR</h2>
+            <div class="bg-gray-200/20 p-6 rounded-lg shadow-inner">
+                <p class="mb-4 text-lg">PLEASE ENTER AS MUCH INFORMATION ABOUT YOUR WORLD AS YOU WOULD LIKE: ESPECIALLY, THE NAME, GEOGRAPHY, TOWNS, RACE, WORLD HISTORY</p>
+                <textarea id="world-prompt" class="w-full h-48 p-4 rounded-md text-white placeholder-gray-400/80 focus:outline-none focus:ring-2 focus:ring-d4c8a1" placeholder="For example: A mountainous region named Eldoria, inhabited by dwarves and elusive elves. A great war happened a century ago..."></textarea>
+            </div>
+            <div class="mt-6 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <button id="generate-world-btn" class="btn text-xl px-8 py-3 rounded-lg w-full sm:w-auto">GENERATE WORLD</button>
+                <button id="randomize-world-btn" class="btn text-xl px-8 py-3 rounded-lg w-full sm:w-auto">RANDOMIZE WORLD</button>
+            </div>
+             <button id="skip-world-btn" class="btn btn-secondary text-xl px-8 py-3 rounded-lg mt-6">SKIP THIS STEP</button>
+        </section>
+
+        <!-- Screen 3: World Display -->
+        <section id="screen3" class="screen hidden">
+            <div id="world-display-content">
+                <h1 class="text-5xl text-title text-center">THE BARD'S BRAIN</h1>
+                <h2 class="text-3xl text-title text-center mb-8">YOUR WORLD</h2>
+                <div id="loading-indicator-world" class="text-center">
+                    <div class="loader inline-block"></div>
+                    <p class="mt-2 text-xl">The Bard is thinking about your world...</p>
+                </div>
+                <div id="world-content" class="grid md:grid-cols-2 gap-8 hidden">
+                    <div class="card p-6 rounded-lg">
+                        <h3 id="world-name" class="text-2xl font-bold mb-2"></h3>
+                        <p id="world-description" class="text-lg whitespace-pre-wrap"></p>
+                    </div>
+                    <div class="card p-6 rounded-lg">
+                        <h3 id="world-gallery-title" class="text-2xl font-bold mb-4 text-center"></h3>
+                        <div id="image-gallery" class="image-gallery"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <button id="character-generation-btn" class="btn btn-secondary text-2xl px-12 py-4 rounded-lg hidden">CHARACTER GENERATION &rarr;</button>
+            </div>
+        </section>
+        
+        <!-- Screen 4: Character Input -->
+        <section id="screen4" class="screen hidden text-center">
+            <h1 class="text-5xl text-title">THE BARD'S BRAIN</h1>
+            <h2 class="text-3xl text-title mb-6">CHARACTER GENERATOR</h2>
+            <div class="space-y-4 bg-gray-200/20 p-6 rounded-lg shadow-inner">
+                 <div>
+                    <p class="mb-2 text-lg">NUMBER OF CHARACTERS TO GENERATE:</p>
+                    <input type="number" id="char-count" class="w-24 p-2 rounded-md text-black text-center" value="4" min="1" max="8">
+                </div>
+                <div>
+                    <p class="mb-2 text-lg">WORLD DESCRIPTION (FILLED FROM PREVIOUS STEP):</p>
+                    <textarea id="char-world-prompt" class="w-full h-24 p-4 rounded-md text-white placeholder-gray-400/80 focus:outline-none focus:ring-2 focus:ring-d4c8a1"></textarea>
+                </div>
+                <div>
+                    <p class="mb-2 text-lg">PLEASE ENTER AS MUCH INFORMATION ABOUT YOUR CHARACTERS AS YOU WOULD LIKE (NAMES, RACES, ETC.):</p>
+                    <textarea id="char-details-prompt" class="w-full h-32 p-4 rounded-md text-white placeholder-gray-400/80 focus:outline-none focus:ring-2 focus:ring-d4c8a1" placeholder="e.g., a stoic dragonborn paladin, a clumsy but powerful gnome wizard, a rogue with a mysterious past..."></textarea>
+                </div>
+            </div>
+            <div class="mt-6 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <button id="generate-chars-btn" class="btn text-xl px-8 py-3 rounded-lg w-full sm:w-auto">GENERATE CHARACTERS</button>
+                <button id="skip-chars-btn" class="btn btn-secondary text-xl px-8 py-3 rounded-lg w-full sm:w-auto">SKIP THIS STEP</button>
+            </div>
+        </section>
+        
+        <!-- Screen 5: Character Display -->
+        <section id="screen5" class="screen hidden">
+            <div id="character-display-content">
+                <h1 class="text-5xl text-title text-center">THE BARD'S BRAIN</h1>
+                <h2 class="text-3xl text-title text-center mb-8">YOUR CHARACTERS</h2>
+                <div id="loading-indicator-char" class="text-center">
+                    <div class="loader inline-block"></div>
+                    <p class="mt-2 text-xl">The Bard is bringing your characters to life...</p>
+                </div>
+                <div id="character-content" class="hidden space-y-8">
+                    <div id="character-list" class="grid md:grid-cols-2 gap-6">
+                        <!-- Character descriptions will be injected here -->
+                    </div>
+                     <div class="card p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-4 text-center">CHARACTER GALLERY</h3>
+                        <div id="character-image-gallery" class="character-image-gallery">
+                            <!-- Character images will be injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <button id="export-pdf-btn" class="btn btn-secondary text-2xl px-12 py-4 rounded-lg hidden">EXPORT TO PDF &rarr;</button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Application Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/world.js"></script>
+    <script src="js/character.js"></script>
+    <script src="js/pdf.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>

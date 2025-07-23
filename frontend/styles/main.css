@@ -1,0 +1,264 @@
+/* The Bard's Brain - Main Styles */
+
+body {
+    font-family: 'IM Fell English SC', serif;
+    background-color: #4a4a42;
+    color: #d4c8a1;
+}
+
+.main-container {
+    background-color: #6d6a5f;
+    min-height: 80vh;
+}
+
+.btn {
+    background-color: #3a3833;
+    color: #d4c8a1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+}
+
+.btn-secondary {
+    background-color: #d4c8a1;
+    color: #3a3833;
+}
+
+.text-title {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.card {
+    background-color: rgba(212, 200, 161, 0.1);
+    border: 1px solid rgba(212, 200, 161, 0.2);
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3a3833;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+textarea {
+    background-color: rgba(0,0,0,0.2);
+}
+
+/* Connection status styles */
+.connection-status {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.connection-status.connected {
+    background-color: rgba(22, 163, 74, 0.5);
+    color: #bbf7d0;
+}
+
+.connection-status.disconnected {
+    background-color: rgba(220, 38, 38, 0.5);
+    color: #fecaca;
+}
+
+/* Screen transitions */
+.screen {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.screen.hidden {
+    display: none;
+}
+
+/* Image gallery styles */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.character-image-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .character-image-gallery {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* PDF feedback modal */
+.pdf-feedback {
+    position: fixed;
+    top: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #166534;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+}
+
+/* Responsive design improvements */
+@media (max-width: 640px) {
+    .text-6xl {
+        font-size: 2.5rem;
+    }
+    
+    .text-5xl {
+        font-size: 2rem;
+    }
+    
+    .text-3xl {
+        font-size: 1.5rem;
+    }
+    
+    .btn {
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+    }
+}
+
+/* Markdown content styling */
+.markdown-content {
+    line-height: 1.6;
+    color: #d4c8a1;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+    color: #d4c8a1;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: bold;
+}
+
+.markdown-content h1 {
+    font-size: 1.8rem;
+    border-bottom: 2px solid rgba(212, 200, 161, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.markdown-content h2 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(212, 200, 161, 0.2);
+    padding-bottom: 0.25rem;
+}
+
+.markdown-content h3 {
+    font-size: 1.3rem;
+}
+
+.markdown-content h4 {
+    font-size: 1.1rem;
+}
+
+.markdown-content p {
+    margin-bottom: 1rem;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+.markdown-content li {
+    margin-bottom: 0.5rem;
+}
+
+.markdown-content blockquote {
+    border-left: 4px solid rgba(212, 200, 161, 0.5);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    background-color: rgba(212, 200, 161, 0.05);
+    padding: 1rem;
+    border-radius: 0.25rem;
+}
+
+.markdown-content code {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.markdown-content pre {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.markdown-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.markdown-content strong,
+.markdown-content b {
+    font-weight: bold;
+    color: #f0e6b3;
+}
+
+.markdown-content em,
+.markdown-content i {
+    font-style: italic;
+}
+
+.markdown-content a {
+    color: #f0e6b3;
+    text-decoration: underline;
+}
+
+.markdown-content a:hover {
+    color: #ffffff;
+}
+
+.markdown-content table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.markdown-content th,
+.markdown-content td {
+    border: 1px solid rgba(212, 200, 161, 0.3);
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.markdown-content th {
+    background-color: rgba(212, 200, 161, 0.1);
+    font-weight: bold;
+}
+
+.markdown-content hr {
+    border: none;
+    border-top: 1px solid rgba(212, 200, 161, 0.3);
+    margin: 2rem 0;
+} 

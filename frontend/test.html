@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+</head>
+<body>
+    <h1>API Test</h1>
+    <button onclick="testConnection()">Test Connection</button>
+    <button onclick="testWorldGeneration()">Test World Generation</button>
+    <div id="output"></div>
+
+    <script>
+        const BACKEND_URL = 'http://localhost:8000';
+        
+        async function testConnection() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/health`);
+                const data = await response.json();
+                document.getElementById('output').innerHTML = `<p>Connection test: ${JSON.stringify(data)}</p>`;
+            } catch (error) {
+                document.getElementById('output').innerHTML = `<p>Connection error: ${error.message}</p>`;
+            }
+        }
+        
+        async function testWorldGeneration() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/world/generate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: 'Test World',
+                        geography: 'Mountains',
+                        magic_systems: 'Arcane',
+                        lore: 'Ancient history',
+                        other: 'Test world'
+                    })
+                });
+                const data = await response.json();
+                document.getElementById('output').innerHTML = `<p>World generation test: ${JSON.stringify(data)}</p>`;
+            } catch (error) {
+                document.getElementById('output').innerHTML = `<p>World generation error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html> 
